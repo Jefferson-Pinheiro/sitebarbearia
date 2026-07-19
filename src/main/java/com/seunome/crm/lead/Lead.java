@@ -1,6 +1,7 @@
 package com.seunome.crm.lead;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.PrePersist;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 // PanacheEntity ja da o campo "id" e os metodos estaticos de consulta (Lead.findById, Lead.listAll etc.)
+@Entity
 public class Lead extends PanacheEntity {
 
     public String name;

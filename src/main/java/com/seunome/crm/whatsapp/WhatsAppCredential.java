@@ -2,11 +2,13 @@ package com.seunome.crm.whatsapp;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
 import java.util.Optional;
 
 // Guarda as credenciais geradas no Meta Business Manager para uma linha do WhatsApp.
 // O accessToken fica criptografado em repouso (ver WhatsAppCredentialService).
+@Entity
 public class WhatsAppCredential extends PanacheEntity {
 
     // Um nome livre para identificar a qual linha/numero essa credencial pertence

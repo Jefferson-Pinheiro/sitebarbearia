@@ -2,6 +2,7 @@ package com.seunome.crm.conversation;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
@@ -10,6 +11,7 @@ import jakarta.persistence.PrePersist;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Message extends PanacheEntity {
 
     @ManyToOne

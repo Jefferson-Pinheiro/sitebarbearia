@@ -9,7 +9,7 @@ import java.util.List;
 public class PipelineService {
 
     public List<PipelineStage> findAllOrdered() {
-        return PipelineStage.listAll(io.quarkus.panache.common.Sort.by("order"));
+        return PipelineStage.listAll(io.quarkus.panache.common.Sort.by("sortOrder"));
     }
 
     @Transactional

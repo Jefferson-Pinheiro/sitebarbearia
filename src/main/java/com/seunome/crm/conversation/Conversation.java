@@ -2,6 +2,7 @@ package com.seunome.crm.conversation;
 
 import com.seunome.crm.lead.Lead;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 // Uma conversa agrupa todas as mensagens trocadas com um lead pelo WhatsApp
+@Entity
 public class Conversation extends PanacheEntity {
 
     @ManyToOne
