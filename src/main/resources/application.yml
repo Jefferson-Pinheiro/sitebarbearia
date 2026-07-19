@@ -1,0 +1,36 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    jdbc:
+      # No Render, definir a variavel DATABASE_URL com a connection string do Neon,
+      # no formato: jdbc:postgresql://HOST/DBNAME?sslmode=require&user=USER&password=SENHA
+      # (o Neon fornece a string como postgres://... -- troque o prefixo para jdbc:postgresql://)
+      url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/crm_whatsapp}
+
+  hibernate-orm:
+    database:
+      generation: update
+    log:
+      sql: false
+
+  http:
+    # Render injeta a variavel PORT automaticamente -- em localhost cai no 8080
+    port: ${PORT:8080}
+    cors:
+      ~: true
+      # Ajuste para a URL real do GitHub Pages depois do deploy do frontend,
+      # ex: https://seu-usuario.github.io
+      origins: ${FRONTEND_ORIGIN:http://localhost:5173}
+      methods: GET,POST,PUT,PATCH,DELETE
+
+# Chave usada para (des)criptografar o access_token do Meta Business antes de salvar.
+# NUNCA commitar o valor real -- definir via variavel de ambiente no Render.
+crm:
+  crypto:
+    secret-key: ${TOKEN_ENCRYPTION_KEY:troque-esta-chave-de-32-caracteres}
+
+whatsapp:
+  webhook:
+    verify-token: ${WHATSAPP_WEBHOOK_VERIFY_TOKEN:troque-este-token}
+  graph-api:
+    base-url: https://graph.facebook.com/v20.0

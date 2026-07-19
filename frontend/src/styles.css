@@ -1,0 +1,287 @@
+/* ===== Design tokens =====
+   Paleta: papel frio + tinta naval + acento verde-sinal + ambar de temperatura
+   Tipografia: Fraunces (display) / Inter (interface) / JetBrains Mono (dados/IDs)
+*/
+:root {
+  --ink: #14213D;
+  --ink-soft: #2A3654;
+  --canvas: #F7F7F5;
+  --paper: #FFFFFF;
+  --line: #E4E3DD;
+  --text: #1D2333;
+  --text-muted: #6B7185;
+  --signal: #2F6F63;      /* verde: conectado / progresso saudavel */
+  --signal-soft: #E4EFEC;
+  --amber: #D98E2B;       /* lead quente */
+  --amber-soft: #FBF0DD;
+  --danger: #B84C4C;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 236px;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: #EDEFF7;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebar-brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.sidebar-brand span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #8B93B5;
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #C7CCE3;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-link:hover {
+  background: var(--ink-soft);
+  color: #fff;
+}
+
+.sidebar-link.active {
+  background: var(--signal);
+  color: #fff;
+}
+
+.sidebar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ===== Main area ===== */
+.main {
+  flex: 1;
+  padding: 40px 48px;
+  max-width: 1180px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: var(--ink);
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ===== Leads table ===== */
+.lead-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lead-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: #FBFBF9;
+}
+
+.lead-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.lead-table tr:last-child td {
+  border-bottom: none;
+}
+
+.lead-phone {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  background: var(--signal-soft);
+  padding: 3px 8px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: var(--signal-soft);
+  color: var(--signal);
+}
+
+.status-pill.perdido { background: #F5E6E6; color: var(--danger); }
+.status-pill.negociando { background: var(--amber-soft); color: var(--amber); }
+
+/* ===== Pipeline board ===== */
+.board {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.board-column {
+  min-width: 260px;
+  flex-shrink: 0;
+}
+
+.board-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 12px 4px;
+}
+
+.board-column-header h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+
+.board-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+
+.board-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Card com "rabinho" de balao, referencia visual ao WhatsApp */
+.lead-card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  border-top-left-radius: 3px;
+  padding: 12px 14px;
+}
+
+.lead-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 6px;
+  height: 12px;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  border-top-left-radius: 6px;
+}
+
+.lead-card-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.lead-card-phone {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.empty-state {
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.loading, .error-banner {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.error-banner {
+  background: #F5E6E6;
+  color: var(--danger);
+  border-radius: 8px;
+  padding: 12px 16px;
+}

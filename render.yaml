@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: crm-whatsapp-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false          # cole a connection string do Neon manualmente no painel do Render
+      - key: TOKEN_ENCRYPTION_KEY
+        sync: false          # gere uma chave de 32 caracteres e cole no painel do Render
+      - key: WHATSAPP_WEBHOOK_VERIFY_TOKEN
+        sync: false          # defina o mesmo valor usado ao configurar o webhook no painel da Meta
+      - key: FRONTEND_ORIGIN
+        value: https://SEU-USUARIO.github.io
