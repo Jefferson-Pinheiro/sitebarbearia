@@ -19,6 +19,7 @@ VITE_API_BASE_URL=http://localhost:8080/api
 ## Telas
 
 - `/` — lista de leads (nome, telefone, origem, status)
+- `/conversas` — caixa de entrada: lista de leads à esquerda, histórico de mensagens e envio à direita
 - `/funil` — leads agrupados em colunas por etapa (Novo, Contato feito, Negociando, Fechado, Perdido)
 
 ## Pré-requisito

@@ -21,4 +21,7 @@ export const api = {
   updateLeadStatus: (id, status) =>
     request(`/leads/${id}/status?status=${status}`, { method: 'PATCH' }),
   getPipelineStages: () => request('/pipeline-stages'),
+  getMessages: (leadId) => request(`/leads/${leadId}/messages`),
+  sendMessage: (leadId, text) =>
+    request(`/leads/${leadId}/messages`, { method: 'POST', body: JSON.stringify({ text }) }),
 };

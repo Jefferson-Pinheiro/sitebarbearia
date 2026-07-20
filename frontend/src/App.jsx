@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
 import LeadsPage from './pages/LeadsPage'
 import PipelinePage from './pages/PipelinePage'
+import InboxPage from './pages/InboxPage'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LeadsPage />} />
         <Route path="/funil" element={<PipelinePage />} />
+        <Route path="/conversas" element={<InboxPage />} />
       </Routes>
     </BrowserRouter>
   )

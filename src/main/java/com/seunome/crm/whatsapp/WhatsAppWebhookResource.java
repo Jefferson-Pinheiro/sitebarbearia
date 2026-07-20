@@ -1,5 +1,6 @@
 package com.seunome.crm.whatsapp;
 
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -18,6 +19,9 @@ public class WhatsAppWebhookResource {
     @ConfigProperty(name = "whatsapp.webhook.verify-token")
     String verifyToken;
 
+    @Inject
+    WebhookProcessingService webhookProcessingService;
+
     // Passo de verificacao exigido pela Meta ao cadastrar a URL do webhook no painel
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -33,12 +37,16 @@ public class WhatsAppWebhookResource {
     }
 
     // Recebe as notificacoes de mensagens/status enviadas pela Meta.
-    // TODO: extrair o numero do remetente e o texto do payload e repassar para
-    // ConversationService.registerMessage(...) via um Service dedicado (WebhookProcessingService).
+    // Responde 200 sempre e rapido -- a Meta reenvia (e pode ate desativar o webhook)
+    // se demorar ou responder erro, entao qualquer falha de parsing fica so no log.
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response receive(Map<String, Object> payload) {
-        LOG.info("Webhook recebido: " + payload);
+        try {
+            webhookProcessingService.processIncoming(payload);
+        } catch (Exception e) {
+            LOG.warning("Falha ao processar webhook: " + e.getMessage());
+        }
         return Response.ok().build();
     }
 }

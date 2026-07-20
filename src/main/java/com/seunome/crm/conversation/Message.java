@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Message extends PanacheEntity {
@@ -32,5 +33,9 @@ public class Message extends PanacheEntity {
     @PrePersist
     void prePersist() {
         this.sentAt = LocalDateTime.now();
+    }
+
+    public static List<Message> findByConversationOrdered(Long conversationId) {
+        return list("conversation.id = ?1 order by sentAt asc", conversationId);
     }
 }

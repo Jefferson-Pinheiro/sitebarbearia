@@ -13,6 +13,10 @@ export default function Sidebar() {
           <span className="sidebar-dot" />
           Leads
         </NavLink>
+        <NavLink to="/conversas" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+          <span className="sidebar-dot" />
+          Conversas
+        </NavLink>
         <NavLink to="/funil" className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
           <span className="sidebar-dot" />
           Funil de vendas
